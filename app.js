@@ -37,7 +37,7 @@ function atualizarLista() {
         return;
     }
 
-    amigos.forEach((nome, index) => {
+    amigos.forEach((nome) => {
         let item = document.createElement('li');
         item.textContent = nome;
         lista.appendChild(item);
@@ -54,19 +54,19 @@ function sortearAmigo() {
         if (amigos.length === 0) {
             alert('Adicione pelo menos um nome antes de sortear.');
         } else {
-            alert('Todos os amigos já foram sorteados! Reinicie a lista.');
+            resultado.innerHTML = `
+                Todos os amigos já foram sorteados! <br>
+                <button onclick="reiniciarSorteio()">🔄 Reiniciar Sorteio</button>
+            `;
         }
         return;
     }
 
     resultado.textContent = 'Sorteando...';
     
-    let indiceSorteado;
-    let nomeSorteado;
-    
     setTimeout(function() {
-        indiceSorteado = Math.floor(Math.random() * amigosRestantes.length);
-        nomeSorteado = amigosRestantes[indiceSorteado];
+        let indiceSorteado = Math.floor(Math.random() * amigosRestantes.length);
+        let nomeSorteado = amigosRestantes[indiceSorteado];
         
         amigosRestantes.splice(indiceSorteado, 1);
         resultado.textContent = `O amigo secreto sorteado é: ${nomeSorteado}! 🎉`;
@@ -80,7 +80,10 @@ function atualizarListaRestantes() {
     lista.innerHTML = '';
 
     if (amigosRestantes.length === 0) {
-        lista.innerHTML = '<li>Todos os amigos foram sorteados!</li>';
+        lista.innerHTML = `
+            <li>Todos os amigos foram sorteados!</li>
+            <button onclick="reiniciarSorteio()">🔄 Reiniciar Sorteio</button>
+        `;
         return;
     }
 
@@ -89,4 +92,11 @@ function atualizarListaRestantes() {
         item.textContent = `${nome} (Não foi dessa vez)`;
         lista.appendChild(item);
     });
+}
+
+function reiniciarSorteio() {
+    amigos = [];             // limpa todos os amigos
+    amigosRestantes = [];    // limpa a lista de sorteio
+    atualizarLista();        // atualiza a tela
+    document.getElementById('resultado').innerHTML = '🔄 A lista foi reiniciada!';
 }
