@@ -1,15 +1,12 @@
-// Listas para armazenar os amigos
 let amigos = [];
 let amigosRestantes = []; 
-
-// Configura o Enter para adicionar amigos  
+  
 document.getElementById('amigo').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         adicionarAmigo();
     } 
 });
 
-// Função para adicionar novo amigo
 function adicionarAmigo() {
     let input = document.getElementById('amigo');
     let nome = input.value.trim();
@@ -31,7 +28,6 @@ function adicionarAmigo() {
     input.focus();
 }
 
-// Atualiza a lista na tela
 function atualizarLista() {
     let lista = document.getElementById('listaAmigos');
     lista.innerHTML = '';
@@ -50,7 +46,6 @@ function atualizarLista() {
     document.getElementById('resultado').innerHTML = '';
 }
 
-// Função para sortear
 function sortearAmigo() {
     let resultado = document.getElementById('resultado');
     resultado.innerHTML = '';
@@ -80,7 +75,6 @@ function sortearAmigo() {
     }, 1000);
 }
 
-// Atualiza lista mostrando quem ainda não foi sorteado
 function atualizarListaRestantes() {
     let lista = document.getElementById('listaAmigos');
     lista.innerHTML = '';
