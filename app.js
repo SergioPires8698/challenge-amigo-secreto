@@ -96,10 +96,3 @@ function atualizarListaRestantes() {
         lista.appendChild(item);
     });
 }
-
-// Reinicia o sorteio
-function reiniciarSorteio() {
-    amigosRestantes = [...amigos]; 
-    atualizarLista();
-    document.getElementById('resultado').innerHTML = '';
-}
